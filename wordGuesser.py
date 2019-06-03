@@ -9,8 +9,7 @@ for i in word_dict:
         word_dict_len.append(len(i))
 
 #dict = word_dict
-
-def getRandLength():
+def getRandLength(): 
     while True:
         l = randint(2, 10)
         if l in word_dict_len:
@@ -27,22 +26,26 @@ def randNum(): return randint(0,9)
 def randSym():
     sym = ['!', '\"', '\'', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '_', '=', '[', ']', '\\', ';', ':', '/', '?', ',', '.', '<', '>', '~', '@']
     return sym[randint(0, len(sym)-1)]
+
 #Dictionary generators
 def lowerDict(secret): #secretLength
     useDict = []
     for i in word_dict:
         if (len(i) == secret): useDict.append(str(i).lower())
     return useDict
+
 def capDict(secret):
     useDict = []
     for i in word_dict:
         if (len(i) == secret): useDict.append(str(i).capitalize())
     return useDict
+
 def upperDict(secret):
     useDict = []
     for i in word_dict:
         if (len(i) == secret): useDict.append(str(i).upper())
     return useDict
+
 def scrambleDict(secret, dtype):
     #l = len(secret)
     l = int(secret)
@@ -65,6 +68,7 @@ def scrambleDict(secret, dtype):
         numDict.append(moldWord)
         moldWord = ""
     return numDict
+
 def getPins(secret, applied):
     c = 0
     if (len(secret) <= len(applied)):
@@ -76,6 +80,7 @@ def getPins(secret, applied):
             if (secret[i] == applied[i]):
                 c+=1
     return c
+
 def easyList(secret, dictionary):
     easylist = []
     secret = str(secret)
@@ -84,6 +89,7 @@ def easyList(secret, dictionary):
             easylist.append(i)
     easylist.sort()
     return easylist
+
 def printEasyList(easylist):
     k = 4
     print("list of possible words:")
@@ -107,6 +113,7 @@ def printEasyList(easylist):
         print(printable)
         printable = ""    
     return
+
 def display(i):
     if (i==0): print("Welcome to the word guessing game.")
     elif (i==1):
@@ -129,6 +136,7 @@ def display(i):
         print("\nExample input \"select lists: l, u, c\"\n")
         return str(input("Select lists: ")).split(', ')
     return
+
 def creatDictionary(secretl, keys):
     sl = int(secretl)
     temp = []
