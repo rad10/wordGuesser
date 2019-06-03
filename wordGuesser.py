@@ -4,12 +4,14 @@ from math import floor
 maxRandRange = 20
 word_dict = ['apple', 'fork', 'knife', 'sparrow', 'card', 'hard', 'dice', 'rice', 'well', 'smell']
 word_dict_len = []
-for i in word_dict:
+for i in word_dict: # Pre generative script to get the length of every word in the dictionary
     if (not len(i) in word_dict_len):
         word_dict_len.append(len(i))
 
 #dict = word_dict
-def getRandLength(): 
+def getRandLength():
+    """This function is used to get a random length that is the same as at least one of the words lengths in the dictionary
+    """
     while True:
         l = randint(2, 10)
         if l in word_dict_len:
@@ -18,35 +20,45 @@ def getRandWord(secLength, dictionary):
     l = int(secLength)
 
 def RandWord(dictionary):
+    """This function is used to aquire the random work to be the correct guess
+    """
     return dictionary[randint(0, len(dictionary)-1)]
 
-def randLower(): return chr(randint(97, 122))
-def randUpper(): return chr(randint(65, 90))
-def randNum(): return randint(0,9)
-def randSym():
+def randLower(): return chr(randint(97, 122)) # returns a character between A-Z. used for the random series words
+def randUpper(): return chr(randint(65, 90)) # ^
+def randNum(): return randint(0,9) # ^^
+def randSym(): # ^^^
     sym = ['!', '\"', '\'', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '_', '=', '[', ']', '\\', ';', ':', '/', '?', ',', '.', '<', '>', '~', '@']
     return sym[randint(0, len(sym)-1)]
 
 #Dictionary generators
 def lowerDict(secret): #secretLength
+    """This function creates a new word series to accompany the correct word all in lowercase
+    """
     useDict = []
     for i in word_dict:
         if (len(i) == secret): useDict.append(str(i).lower())
     return useDict
 
 def capDict(secret):
+    """This function creates a new word series to accompany the secret word with capitalized words
+    """
     useDict = []
     for i in word_dict:
         if (len(i) == secret): useDict.append(str(i).capitalize())
     return useDict
 
 def upperDict(secret):
+    """This function creates a new word series to accompany the secret word all in caps
+    """
     useDict = []
     for i in word_dict:
         if (len(i) == secret): useDict.append(str(i).upper())
     return useDict
 
 def scrambleDict(secret, dtype):
+    """This function will create a unique word series out of letter generated words all the length of the secret key
+    """
     #l = len(secret)
     l = int(secret)
     numDict = []
@@ -70,6 +82,8 @@ def scrambleDict(secret, dtype):
     return numDict
 
 def getPins(secret, applied):
+    """
+    """
     c = 0
     if (len(secret) <= len(applied)):
         for i in range(len(secret)):
@@ -82,6 +96,8 @@ def getPins(secret, applied):
     return c
 
 def easyList(secret, dictionary):
+    """Creates a word series with english words in the dictionary that are the same length as the secret word
+    """
     easylist = []
     secret = str(secret)
     for i in dictionary:
@@ -91,6 +107,8 @@ def easyList(secret, dictionary):
     return easylist
 
 def printEasyList(easylist):
+    """UI used to print the screen of possible words
+    """
     k = 4
     print("list of possible words:")
     l = len(easylist[0])
@@ -115,6 +133,8 @@ def printEasyList(easylist):
     return
 
 def display(i):
+    """This function controls the entire interface of the game including inputs and outputs
+    """
     if (i==0): print("Welcome to the word guessing game.")
     elif (i==1):
         difficulty = str(input("choose difficulty (easy shows words that it could be; hard only tels you length of word) [easy/hard]: ")).lower()
@@ -138,6 +158,8 @@ def display(i):
     return
 
 def creatDictionary(secretl, keys):
+    """Creates an ultimate dictionary that can be of a single type or a hybrid of multiple word series
+    """
     sl = int(secretl)
     temp = []
     stor = []
